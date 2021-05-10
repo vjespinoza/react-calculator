@@ -1,12 +1,17 @@
 import styled from "styled-components";
 
+const colDark = (props) => props.theme.color.bgDark;
+const colLigth = (props) => props.theme.color.bgLigth;
+const colPrimary = (props) => props.theme.color.primary;
+const colAccent = (props) => props.theme.color.accent;
+
 export const CalcContainer = styled.div`
     display: flex;
     flex-direction: column;
     border-radius: 20px;
     width: 320px;
     height: 640px;
-    background-color: ${(props) => props.theme.color.bgDark};
+    background-color: ${colDark};
     position: absolute;
     top: 50%;
     left: 50%;
@@ -33,7 +38,7 @@ export const DisplayTop = styled.div`
     position: relative;
 
     & span:nth-child(3) {
-        background: ${(props) => props.theme.color.bgDark};
+        background: ${colDark};
         filter: brightness(1.2);
         display: flex;
         justify-content: center;
@@ -49,7 +54,7 @@ export const DisplayTop = styled.div`
     }
 
     & span:nth-child(4) {
-        background: ${(props) => props.theme.color.bgDark};
+        background: ${colDark};
         filter: brightness(1.2);
         display: flex;
         justify-content: center;
@@ -145,7 +150,7 @@ export const CalcKeyboard = styled.div`
     grid-template-rows: repeat(5, 1fr);
     gap: 20px;
     padding: 25px;
-    background: ${(props) => props.theme.color.bgDark};
+    background: ${colDark};
     filter: brightness(1.2);
     width: 100%;
     height: 100%;
@@ -154,14 +159,14 @@ export const CalcKeyboard = styled.div`
 `;
 
 export const CalcButton = styled.button`
-    background: ${(props) => props.theme.color.bgDark};
+    background: ${colDark};
     filter: brightness(0.9);
     outline: none;
     border: none;
     border-radius: 20px;
     color: ${(props) =>
-        (props.accent === "accent" && props.theme.color.accent) ||
-        (props.accent === "primary" && props.theme.color.primary) ||
+        (props.accent === "accent" && colAccent) ||
+        (props.accent === "primary" && colPrimary) ||
         "white"};
     font-size: 1.2rem;
     font-weight: bold;
