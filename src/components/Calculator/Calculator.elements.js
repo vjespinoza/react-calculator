@@ -49,39 +49,20 @@ export const DisplayTop = styled.div`
         display: flex;
         justify-content: center;
         align-items: center;
-        width: 50px;
-        height: 40px;
+        width: 40px;
+        height: 30px;
         position: absolute;
         top: 110%;
         left: 50%;
-        transform: translateX(-100%);
-        border-top-left-radius: 50%;
-        border-bottom-left-radius: 50%;
-    }
-
-    & span:nth-child(4) {
-        background: ${(props) => (props.darkMode ? colLigth : colDark)};
-        filter: brightness(1.2);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 50px;
-        height: 40px;
-        position: absolute;
-        top: 110%;
-        right: 50%;
-        transform: translateX(100%);
-        border-top-right-radius: 50%;
-        border-bottom-right-radius: 50%;
-    }
-
-    & span:nth-child(3) > *,
-    span:nth-child(4) > * {
-        cursor: pointer;
+        transform: translateX(-50%);
+        border-radius: 10px;
     }
 
     & span > svg {
+        cursor: pointer;
         fill: ${(props) => (props.darkMode ? colDark : "white")};
+        margin: 0;
+        font-size: 0.9rem;
     }
 `;
 

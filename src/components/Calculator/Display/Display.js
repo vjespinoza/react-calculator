@@ -15,12 +15,12 @@ import {
     FaMoon,
 } from "react-icons/fa";
 import { getTime } from "../../../utils/time";
+import { convertNumbers } from "../../../utils/stringParser";
 
-const Display = ({ toggleDarkMode, darkMode }) => {
+const Display = ({ toggleDarkMode, darkMode, currentVal }) => {
     const [time, setTime] = useState(getTime());
-    const [history, setHistory] = useState(
-        "453 x 874877 - 2343434 + 223435 - 123123 - 85 x 23 ÷ 25 + 4818711"
-    );
+
+    const displayValues = convertNumbers(currentVal);
 
     useEffect(() => {
         setInterval(() => {
@@ -40,15 +40,16 @@ const Display = ({ toggleDarkMode, darkMode }) => {
                     <FaBatteryThreeQuarters />
                 </TopRigth>
                 <span>
-                    <FaSun onClick={toggleDarkMode} />
-                </span>
-                <span>
-                    <FaMoon onClick={toggleDarkMode} />
+                    {darkMode ? (
+                        <FaMoon onClick={toggleDarkMode} />
+                    ) : (
+                        <FaSun onClick={toggleDarkMode} />
+                    )}
                 </span>
             </DisplayTop>
-            <DisplayHistory darkMode={darkMode}>{history}</DisplayHistory>
+            <DisplayHistory darkMode={darkMode}></DisplayHistory>
             {/* Prevent the input of more than 12 digits */}
-            <DisplayValue darkMode={darkMode}>123,456,789,000</DisplayValue>
+            <DisplayValue darkMode={darkMode}>{displayValues}</DisplayValue>
         </CalcDisplay>
     );
 };
