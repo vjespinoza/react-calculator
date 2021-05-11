@@ -2,13 +2,14 @@ import React from "react";
 import { CalcButton, CalcKeyboard } from "../Calculator.elements";
 import { buttons } from "../../../utils/buttons";
 
-const Keyboard = () => {
+const Keyboard = ({ darkMode }) => {
     return (
-        <CalcKeyboard>
-            {buttons.map((button) => {
+        <CalcKeyboard darkMode={darkMode}>
+            {buttons.map((button, i) => {
                 return (
                     <CalcButton
-                        key={button.name}
+                        darkMode={darkMode}
+                        key={i}
                         name={button.name}
                         value={button.value}
                         accent={button.color}

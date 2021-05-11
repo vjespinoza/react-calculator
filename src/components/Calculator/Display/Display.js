@@ -16,7 +16,7 @@ import {
 } from "react-icons/fa";
 import { getTime } from "../../../utils/time";
 
-const Display = () => {
+const Display = ({ toggleDarkMode, darkMode }) => {
     const [time, setTime] = useState(getTime());
     const [history, setHistory] = useState(
         "453 x 874877 - 2343434 + 223435 - 123123 - 85 x 23 ÷ 25 + 4818711"
@@ -30,25 +30,25 @@ const Display = () => {
 
     return (
         <CalcDisplay>
-            <DisplayTop>
-                <TopLeft>
+            <DisplayTop darkMode={darkMode}>
+                <TopLeft darkMode={darkMode}>
                     <span>{time}</span>
                 </TopLeft>
-                <TopRigth>
+                <TopRigth darkMode={darkMode}>
                     <FaSignal />
                     <FaWifi />
                     <FaBatteryThreeQuarters />
                 </TopRigth>
                 <span>
-                    <FaSun />
+                    <FaSun onClick={toggleDarkMode} />
                 </span>
                 <span>
-                    <FaMoon />
+                    <FaMoon onClick={toggleDarkMode} />
                 </span>
             </DisplayTop>
-            <DisplayHistory>{history}</DisplayHistory>
+            <DisplayHistory darkMode={darkMode}>{history}</DisplayHistory>
             {/* Prevent the input of more than 12 digits */}
-            <DisplayValue>123,456,789,000</DisplayValue>
+            <DisplayValue darkMode={darkMode}>123,456,789,000</DisplayValue>
         </CalcDisplay>
     );
 };

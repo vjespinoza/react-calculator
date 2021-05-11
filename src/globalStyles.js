@@ -9,9 +9,6 @@ const GlobalStyle = createGlobalStyle`
 
     body {
         font-family: 'Quicksand', sans-serif;
-        background-color: #FFDEE9;
-        background-image: linear-gradient(0deg, #FFDEE9 0%, #B5FFFC 100%);
-        /* background-color: ${(props) => props.theme.color.bgLigth}; */
     }
 
     .react-icons {

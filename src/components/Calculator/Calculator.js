@@ -2,11 +2,11 @@ import React from "react";
 import Display from "./Display/Display";
 import Keyboard from "./Keyboard/Keyboard";
 
-const Calculator = () => {
+const Calculator = ({ toggleDarkMode, darkMode }) => {
     return (
         <>
-            <Display />
-            <Keyboard />
+            <Display darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
+            <Keyboard darkMode={darkMode} />
         </>
     );
 };
