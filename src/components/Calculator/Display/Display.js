@@ -20,7 +20,7 @@ import { numberFormat } from "../../../utils/numberFormat";
 const Display = ({ toggleDarkMode, darkMode, currentVal }) => {
     const [time, setTime] = useState(getTime());
 
-    const displayValues = numberFormat(currentVal);
+    // const displayValues = numberFormat(currentVal);
 
     useEffect(() => {
         setInterval(() => {
@@ -48,8 +48,8 @@ const Display = ({ toggleDarkMode, darkMode, currentVal }) => {
                 </span>
             </DisplayTop>
             <DisplayHistory darkMode={darkMode}></DisplayHistory>
-            {/* Prevent the input of more than 12 digits */}
-            <DisplayValue darkMode={darkMode}>{displayValues}</DisplayValue>
+            {/* <DisplayValue darkMode={darkMode}>{displayValues}</DisplayValue> */}
+            <DisplayValue darkMode={darkMode}>{currentVal}</DisplayValue>
         </CalcDisplay>
     );
 };
