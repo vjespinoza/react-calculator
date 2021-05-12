@@ -15,12 +15,12 @@ import {
     FaMoon,
 } from "react-icons/fa";
 import { getTime } from "../../../utils/time";
-import { convertNumbers } from "../../../utils/stringParser";
+import { numberFormat } from "../../../utils/numberFormat";
 
 const Display = ({ toggleDarkMode, darkMode, currentVal }) => {
     const [time, setTime] = useState(getTime());
 
-    const displayValues = convertNumbers(currentVal);
+    const displayValues = numberFormat(currentVal);
 
     useEffect(() => {
         setInterval(() => {

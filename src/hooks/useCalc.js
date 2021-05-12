@@ -4,7 +4,7 @@ const useCalc = () => {
     const [buttonData, setButtonData] = useState({});
     const [number, setNumber] = useState("");
     const [operator, setOperator] = useState("");
-    const [currentVal, setCurrentVal] = useState("0");
+    const [currentVal, setCurrentVal] = useState("");
     const [history, setHistory] = useState("");
 
     const handleClick = (e) => {
@@ -16,9 +16,12 @@ const useCalc = () => {
     };
 
     useEffect(() => {
-        if (Object.keys(buttonData)[0] === "number") {
+        //Concat numeric values from buttons
+        if (Object.keys(buttonData)[0] === "number" && currentVal.length < 12) {
             setCurrentVal(currentVal.concat(Object.values(buttonData)[0]));
         }
+
+        //Concat decimal separator from buttons and prevents duplicated separator
         if (
             Object.keys(buttonData)[0] === "decimal" &&
             !currentVal.includes(".")
