@@ -3,8 +3,6 @@ import { useState, useEffect } from "react";
 const useCalc = () => {
     const [buttonData, setButtonData] = useState({});
     const [value, setValue] = useState("");
-    const [integers, setIntegers] = useState("");
-    const [decimals, setDecimals] = useState("");
     const [operator, setOperator] = useState("");
     const [currentVal, setCurrentVal] = useState("");
     const [history, setHistory] = useState("");
@@ -44,17 +42,21 @@ const useCalc = () => {
     }, [buttonData]);
 
     useEffect(() => {
+        let integers = Math.trunc(value).toString();
+        let decimals = value.slice(value.indexOf(".") + 1);
+
+        //Format cuurentVal to 12 integers
         if (!value.includes(".")) {
-            integers.length < 12 && setIntegers(Math.trunc(value).toString());
-            setCurrentVal(`${integers}`);
+            setCurrentVal(`${integers.slice(0, 12)}`);
         }
 
+        //Format cuurentVal to 4 decimals
         if (value.includes(".")) {
-            decimals.length < 4 &&
-                setDecimals(value.slice(value.indexOf(".") + 1));
-            setCurrentVal(`${integers}.${decimals}`);
+            setCurrentVal(
+                integers.slice(0, 12).concat(`.${decimals.slice(0, 4)}`)
+            );
         }
-    }, [value, buttonData]);
+    }, [value]);
 
     return {
         handleClick,
