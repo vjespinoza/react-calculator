@@ -46,7 +46,7 @@ const useCalc = () => {
     useEffect(() => {
         if (!value.includes(".")) {
             integers.length < 12 && setIntegers(Math.trunc(value).toString());
-            setCurrentVal(integers);
+            setCurrentVal(`${integers}`);
         }
 
         if (value.includes(".")) {
@@ -54,7 +54,7 @@ const useCalc = () => {
                 setDecimals(value.slice(value.indexOf(".") + 1));
             setCurrentVal(`${integers}.${decimals}`);
         }
-    }, [value]);
+    }, [value, buttonData]);
 
     return {
         handleClick,
