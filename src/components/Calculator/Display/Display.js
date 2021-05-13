@@ -49,7 +49,6 @@ const Display = ({ toggleDarkMode, darkMode, currentVal }) => {
             </DisplayTop>
             <DisplayHistory darkMode={darkMode}></DisplayHistory>
             <DisplayValue darkMode={darkMode}>{displayValues}</DisplayValue>
-            {/* <DisplayValue darkMode={darkMode}>{currentVal}</DisplayValue> */}
         </CalcDisplay>
     );
 };

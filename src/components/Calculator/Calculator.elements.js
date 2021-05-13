@@ -132,7 +132,7 @@ export const DisplayValue = styled.div`
     padding: 0 15px;
     color: ${(props) => (props.darkMode ? colDark : "white")};
     font-weight: bolder;
-    font-size: 2rem;
+    font-size: 1.6rem;
     text-align: right;
     margin-top: 10px;
     word-break: break-all;

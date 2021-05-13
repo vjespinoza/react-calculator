@@ -50,7 +50,7 @@ const useCalc = () => {
             setCurrentVal(`${integers.slice(0, 12)}`);
         }
 
-        //Format cuurentVal to 4 decimals
+        //Format currentVal to 4 decimals
         if (value.includes(".")) {
             setCurrentVal(
                 integers.slice(0, 12).concat(`.${decimals.slice(0, 4)}`)
