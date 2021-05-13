@@ -94,14 +94,19 @@ export const TopRigth = styled.div`
 
 export const DisplayHistory = styled.div`
     display: flex;
-    align-items: flex-end;
     color: ${(props) => (props.darkMode ? colDark : "white")};
     /* background-color: orange; */
     flex: 5 1 0;
     padding: 0 15px;
-    font-size: 0.8rem;
-    text-align: right;
     overflow: auto;
+    font-size: 1rem;
+    font-weight: bold;
+
+    & p {
+        text-align: right;
+        margin-left: auto;
+        /* background-color: red; */
+    }
 
     /* width */
     &::-webkit-scrollbar {
@@ -131,11 +136,15 @@ export const DisplayValue = styled.div`
     flex: 3 1 0;
     padding: 0 15px;
     color: ${(props) => (props.darkMode ? colDark : "white")};
-    font-weight: bolder;
-    font-size: 1.6rem;
-    text-align: right;
-    margin-top: 10px;
-    word-break: break-all;
+
+    & h3 {
+        color: inherit;
+        font-weight: bold;
+        font-size: 1.4rem;
+        text-align: right;
+        line-height: 2.5;
+        word-break: break-all;
+    }
 `;
 
 //Keyboard elements

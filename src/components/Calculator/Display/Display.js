@@ -47,8 +47,12 @@ const Display = ({ toggleDarkMode, darkMode, currentVal }) => {
                     )}
                 </span>
             </DisplayTop>
-            <DisplayHistory darkMode={darkMode}></DisplayHistory>
-            <DisplayValue darkMode={darkMode}>{displayValues}</DisplayValue>
+            <DisplayHistory darkMode={darkMode}>
+                <p>{displayValues}</p>
+            </DisplayHistory>
+            <DisplayValue darkMode={darkMode}>
+                <h3>totals</h3>
+            </DisplayValue>
         </CalcDisplay>
     );
 };
