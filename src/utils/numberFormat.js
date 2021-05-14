@@ -8,6 +8,11 @@ export const numberFormat = (string) => {
         int = "0";
     }
 
+    //Displays '0.' when display is empty and the decimal separator is clicked.
+    if (string === "0.") {
+        int = "0.";
+    }
+
     //Formats string based on the existance of decimals
     if (string.includes(".")) {
         return int.toLocaleString("en-US", {

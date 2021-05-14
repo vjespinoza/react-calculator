@@ -12,7 +12,7 @@ export const buttons = [
         color: "primary",
     },
     {
-        name: "operator",
+        name: "percentage",
         value: "%",
         icon: "%",
         color: "primary",

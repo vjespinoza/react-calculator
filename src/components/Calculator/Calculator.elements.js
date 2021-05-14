@@ -94,39 +94,42 @@ export const TopRigth = styled.div`
 
 export const DisplayHistory = styled.div`
     display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
     color: ${(props) => (props.darkMode ? colDark : "white")};
     /* background-color: orange; */
     flex: 5 1 0;
-    padding: 0 15px;
-    overflow: auto;
+    overflow: hidden;
     font-size: 1rem;
     font-weight: bold;
 
     & p {
+        padding: 0 10px;
+        height: 100%;
         text-align: right;
-        margin-left: auto;
         /* background-color: red; */
-    }
+        overflow: auto;
 
-    /* width */
-    &::-webkit-scrollbar {
-        width: 5px;
-    }
+        /* width */
+        &::-webkit-scrollbar {
+            width: 5px;
+        }
 
-    /* Track */
-    &::-webkit-scrollbar-track {
-        background: transparent;
-    }
+        /* Track */
+        &::-webkit-scrollbar-track {
+            background: transparent;
+        }
 
-    /* Handle */
-    &::-webkit-scrollbar-thumb {
-        background: #3d414d;
-        border-radius: 5px;
-    }
+        /* Handle */
+        &::-webkit-scrollbar-thumb {
+            background: #3d414d;
+            border-radius: 5px;
+        }
 
-    /* Handle on hover */
-    &::-webkit-scrollbar-thumb:hover {
-        background: #555;
+        /* Handle on hover */
+        &::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
     }
 `;
 
