@@ -2,12 +2,18 @@ import { useState, useEffect } from "react";
 import { operations } from "../utils/operations";
 
 const useCalc = () => {
+    //Name and value of the buttons clicked.
     const [buttonData, setButtonData] = useState({});
-    const [value, setValue] = useState("");
+    //Raw data without formatting
+    const [inputRaw, setInputRaw] = useState("");
+    //Formatted data (12 integers and 4 floats)
+    const [inputData, setInputData] = useState({ integers: "", floats: "" });
+    //Unified inputData as number
+    const [current, setCurrent] = useState("");
+
+    const [prev, setPrev] = useState("");
     const [operator, setOperator] = useState("");
-    const [currentVal, setCurrentVal] = useState("");
-    const [prevVal, setPrevVal] = useState(0);
-    const [history, setHistory] = useState([]);
+    const [result, setResult] = useState(0);
 
     const handleClick = (e) => {
         const { name, value } = e.target;
@@ -17,66 +23,71 @@ const useCalc = () => {
         });
     };
 
-    //Captures button name and value
-    useEffect(() => {
-        //Get values from buttons and concatenates them
-        //Prevents duplicated concatenation of decimal separator.
+    const getButtonData = () => {
+        let btnKey = Object.keys(buttonData)[0];
+
+        //Creates a string with raw data from buttons (Numbers and decimal separator).
         if (
-            Object.keys(buttonData)[0] === "number" ||
-            (Object.keys(buttonData)[0] === "decimal" && !value.includes("."))
+            btnKey === "number" ||
+            (btnKey === "decimal" && !inputRaw.includes("."))
         ) {
-            setValue(value.concat(Object.values(buttonData)[0]));
+            setInputRaw(inputRaw.concat(Object.values(buttonData)[0]));
         }
 
-        //Sets value to '0.' when display is empty and the decimal separator is clicked.
-        if (value.length === 0 && Object.keys(buttonData)[0] === "decimal") {
-            setValue(value.concat("0."));
-        }
-
-        //Prevents 0 (to the left) concatenation if display is empty or decimal
-        //separator was not clicked yet.
-        if (
-            value.length === 0 &&
-            Object.keys(buttonData)[0] === "number" &&
-            Object.values(buttonData)[0] === "0"
-        ) {
-            setValue("");
-        }
-
-        //Sets the value for operator
-        if (Object.keys(buttonData)[0] === "operator") {
+        if (btnKey === "operator") {
             setOperator(Object.values(buttonData)[0]);
         }
+    };
+
+    useEffect(() => {
+        getButtonData();
     }, [buttonData]);
 
-    //Format max length for integers and decimals
+    const getInputData = () => {
+        //Saves only 12 integers from inputRaw
+        if (!inputRaw.includes(".")) {
+            inputData.integers.length < 12 &&
+                setInputData({
+                    ...inputData,
+                    integers: Math.trunc(inputRaw).toString(),
+                });
+        }
+
+        //Saves only 4 floats from inputRaw
+        if (inputRaw.includes(".")) {
+            inputData.floats.length < 5 &&
+                setInputData({
+                    ...inputData,
+                    floats: inputRaw.slice(inputRaw.indexOf(".")),
+                });
+        }
+    };
+
     useEffect(() => {
-        let integers = Math.trunc(value).toString();
-        let decimals = value.slice(value.indexOf(".") + 1);
+        getInputData();
+    }, [inputRaw]);
 
-        //Format currentVal to 12 integers
-        if (!value.includes(".")) {
-            setCurrentVal(`${integers.slice(0, 12)}`);
-        }
+    useEffect(() => {
+        setCurrent(parseFloat(`${inputData.integers}${inputData.floats}`));
+    }, [inputData]);
 
-        //Format currentVal to 4 decimals
-        if (value.includes(".")) {
-            setCurrentVal(
-                integers.slice(0, 12).concat(`.${decimals.slice(0, 4)}`)
-            );
-        }
-    }, [value]);
+    const evaluateData = () => {
+        // let result = operations(prev, current, operator);
+        // setResult(result);
+        // console.log(result);
 
-    //Operation
-    // useEffect(() => {
-    //     setPrevVal(operations(parseFloat(currentVal), 2, operator));
-    //     setCurrentVal("0");
-    //     console.log(prevVal);
-    // }, [operator]);
+        setPrev(current);
+        setCurrent(0);
+    };
+
+    useEffect(() => {
+        evaluateData();
+        console.log("new operator:", operator);
+    }, [operator]);
 
     return {
         handleClick,
-        currentVal,
+        inputData,
     };
 };
 

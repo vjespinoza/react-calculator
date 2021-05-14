@@ -133,21 +133,20 @@ export const DisplayHistory = styled.div`
     }
 `;
 
-export const DisplayValue = styled.div`
+export const DisplayValue = styled.input`
     display: block;
     /* background-color: pink; */
+    background: ${(props) => (props.darkMode ? colLigth : colDark)};
     flex: 3 1 0;
     padding: 0 15px;
     color: ${(props) => (props.darkMode ? colDark : "white")};
-
-    & h3 {
-        color: inherit;
-        font-weight: bold;
-        font-size: 1.4rem;
-        text-align: right;
-        line-height: 2.5;
-        word-break: break-all;
-    }
+    font-weight: bold;
+    font-size: 1.4rem;
+    text-align: right;
+    line-height: 2.5;
+    word-break: break-all;
+    outline: none;
+    border: none;
 `;
 
 //Keyboard elements

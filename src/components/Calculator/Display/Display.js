@@ -16,11 +16,10 @@ import {
 } from "react-icons/fa";
 import { getTime } from "../../../utils/time";
 import { numberFormat } from "../../../utils/numberFormat";
+// import { numberFormat } from "../../../utils/numberFormat";
 
-const Display = ({ toggleDarkMode, darkMode, currentVal }) => {
+const Display = ({ toggleDarkMode, darkMode, inputData }) => {
     const [time, setTime] = useState(getTime());
-
-    const displayValues = numberFormat(currentVal);
 
     useEffect(() => {
         setInterval(() => {
@@ -48,11 +47,14 @@ const Display = ({ toggleDarkMode, darkMode, currentVal }) => {
                 </span>
             </DisplayTop>
             <DisplayHistory darkMode={darkMode}>
-                <p>{displayValues}</p>
+                <p>{numberFormat(inputData.integers, inputData.floats)}</p>
             </DisplayHistory>
-            <DisplayValue darkMode={darkMode}>
-                <h3>totals</h3>
-            </DisplayValue>
+            <DisplayValue
+                type="text"
+                disabled
+                darkMode={darkMode}
+                value={numberFormat(inputData.integers, inputData.floats)}
+            />
         </CalcDisplay>
     );
 };

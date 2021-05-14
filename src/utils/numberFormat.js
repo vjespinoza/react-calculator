@@ -1,24 +1,21 @@
-export const numberFormat = (string) => {
-    let decimals = string.slice(string.indexOf(".") + 1);
+export const numberFormat = (integers, floats) => {
+    let string = integers + floats;
 
     let int = parseFloat(string);
 
-    //Prevents 'isNaN' to appear on display when calculator is initialized.
-    if (string === "") {
+    if (isNaN(int)) {
         int = "0";
     }
 
-    //Displays '0.' when display is empty and the decimal separator is clicked.
-    if (string === "0.") {
+    if (floats === "." && integers === "0") {
         int = "0.";
     }
 
-    //Formats string based on the existance of decimals
-    if (string.includes(".")) {
-        return int.toLocaleString("en-US", {
-            minimumFractionDigits: Math.min(decimals.length, 4),
-        });
-    } else {
-        return int.toLocaleString("en-US");
-    }
+    // if (integers !== "0" && floats === ".") {
+    //     int = integers + ".";
+    // }
+
+    return int.toLocaleString("en-US", {
+        maximumFractionDigits: floats.length,
+    });
 };
