@@ -4,7 +4,7 @@ import Keyboard from "./Keyboard/Keyboard";
 import useCalc from "../../hooks/useCalc";
 
 const Calculator = ({ toggleDarkMode, darkMode }) => {
-    const { handleClick, inputData } = useCalc();
+    const { handleClick, inputData, handleMouseDown } = useCalc();
     return (
         <>
             <Display
@@ -12,7 +12,11 @@ const Calculator = ({ toggleDarkMode, darkMode }) => {
                 toggleDarkMode={toggleDarkMode}
                 inputData={inputData}
             />
-            <Keyboard handleClick={handleClick} darkMode={darkMode} />
+            <Keyboard
+                handleClick={handleClick}
+                handleMouseDown={handleMouseDown}
+                darkMode={darkMode}
+            />
         </>
     );
 };

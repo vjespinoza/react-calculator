@@ -1,19 +1,22 @@
 import { useState, useEffect } from "react";
-import { operations } from "../utils/operations";
+import { stringMath } from "../utils/stringMath";
 
 const useCalc = () => {
     //Name and value of the buttons clicked.
     const [buttonData, setButtonData] = useState({});
+    //Current operator
+    // const [operator, setOperator] = useState("");
     //Raw data without formatting
     const [inputRaw, setInputRaw] = useState("");
     //Formatted data (12 integers and 4 floats)
     const [inputData, setInputData] = useState({ integers: "", floats: "" });
     //Unified inputData as number
     const [current, setCurrent] = useState("");
+    //String containing all values and operators
+    const [history, setHistory] = useState("");
 
-    const [prev, setPrev] = useState("");
-    const [operator, setOperator] = useState("");
-    const [result, setResult] = useState(0);
+    // const [prev, setPrev] = useState("");
+    // const [result, setResult] = useState(0);
 
     const handleClick = (e) => {
         const { name, value } = e.target;
@@ -22,6 +25,16 @@ const useCalc = () => {
             [name]: value,
         });
     };
+
+    // const handleMouseDown = () => {
+    //     if (history === "") {
+    //         setHistory(operator);
+    //     }
+
+    //     if (history !== "") {
+    //         setHistory(history.concat(operator + current));
+    //     }
+    // };
 
     const getButtonData = () => {
         let btnKey = Object.keys(buttonData)[0];
@@ -35,7 +48,9 @@ const useCalc = () => {
         }
 
         if (btnKey === "operator") {
-            setOperator(Object.values(buttonData)[0]);
+            // setOperator(Object.values(buttonData)[0]);
+            setHistory(history.concat(current + Object.values(buttonData)[0]));
+            setInputRaw("");
         }
     };
 
@@ -70,20 +85,6 @@ const useCalc = () => {
     useEffect(() => {
         setCurrent(parseFloat(`${inputData.integers}${inputData.floats}`));
     }, [inputData]);
-
-    const evaluateData = () => {
-        // let result = operations(prev, current, operator);
-        // setResult(result);
-        // console.log(result);
-
-        setPrev(current);
-        setCurrent(0);
-    };
-
-    useEffect(() => {
-        evaluateData();
-        console.log("new operator:", operator);
-    }, [operator]);
 
     return {
         handleClick,
